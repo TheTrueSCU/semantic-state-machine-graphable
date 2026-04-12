@@ -1,29 +1,36 @@
-# state-machine-graphable
+# semantic-state-machine-graphable
 
-A library for visualizing `state-machine` structures and `AuditContext` execution paths as graphs using `graphable`.
+A library for visualizing `semantic-state-machine` structures and `AuditContext` execution paths as graphs using `graphable`.
 
 ## Features
-- **StateMachineGraph**: Visualize the static structure of a `state-machine.StateMachine`.
+- **StateMachineGraph**: Visualize the static structure of a `semantic-state-machine.StateMachine`.
 - **AuditContextGraph**: Visualize the execution history of an `AuditContext` as a graph, with edges annotated by transition indices.
 
 ## Installation
+
+### For Development
 The project is managed with `uv`. To install dependencies:
 ```bash
 uv sync
 ```
 
+### From PyPI
+```bash
+pip install semantic-state-machine-graphable
+```
+
 ## Testing
 The project uses `pytest` for testing. Run the test suite with coverage reporting:
 ```bash
-PYTHONPATH=src uv run pytest --cov=state_machine_graphable --cov-report=term-missing
+PYTHONPATH=src uv run pytest --cov=semantic_state_machine_graphable --cov-report=term-missing
 ```
 
 ## Usage
 
 ### State Machine Visualization
 ```python
-from state_machine import StateMachine
-from state_machine_graphable.graph import StateMachineGraph
+from semantic_state_machine import StateMachine
+from semantic_state_machine_graphable.graph import StateMachineGraph
 
 sm = StateMachine(...)
 sm.add_transition(...)
@@ -34,8 +41,8 @@ graph = StateMachineGraph(sm)
 
 ### Execution Path Visualization
 ```python
-from state_machine import AuditedStateMachine, AuditContext
-from state_machine_graphable.graph import AuditContextGraph
+from semantic_state_machine import AuditedStateMachine, AuditContext
+from semantic_state_machine_graphable.graph import AuditContextGraph
 
 sm = AuditedStateMachine(...)
 ctx = AuditContext(...)
@@ -44,3 +51,6 @@ ctx = AuditContext(...)
 graph = AuditContextGraph(ctx, sm)
 # Now visualize or export the execution path graph
 ```
+
+## License
+This project is licensed under the MIT License.

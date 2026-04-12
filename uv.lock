@@ -657,17 +657,21 @@ wheels = [
 ]
 
 [[package]]
-name = "state-machine"
+name = "semantic-state-machine"
 version = "0.1.0"
-source = { git = "https://github.com/TheTrueSCU/state-machine.git#338835cb81e633709390d888641c0c0b32fa3098" }
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/03/0a/e94452cd6619b926614c6deb32cc59ef9daeb5f21dd6fe36435d69410f42/semantic_state_machine-0.1.0.tar.gz", hash = "sha256:2081f613553ce64b0c4114a0ef46eff33b86deec8a3189f94f95e63baff50d49", size = 3811, upload-time = "2026-04-11T06:05:18.988Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/a1/0e/ae96668cc7b17a1a619c3dc7a84fb9b782bd8a16a4610bf07c6de3101add/semantic_state_machine-0.1.0-py3-none-any.whl", hash = "sha256:d39ba3b9cdd2fbbdfa07c21c7fe5a9e0e7ecd5c6e2d640c61e7f136b0817fd0b", size = 4901, upload-time = "2026-04-11T06:05:18.018Z" },
+]
 
 [[package]]
-name = "state-machine-graphable"
-version = "0.1.0"
+name = "semantic-state-machine-graphable"
+version = "0.1.1"
 source = { editable = "." }
 dependencies = [
     { name = "graphable" },
-    { name = "state-machine" },
+    { name = "semantic-state-machine" },
 ]
 
 [package.dev-dependencies]
@@ -687,7 +691,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "graphable", specifier = ">=0.6.1" },
-    { name = "state-machine", git = "https://github.com/TheTrueSCU/state-machine.git" },
+    { name = "semantic-state-machine", specifier = ">=0.1.0" },
 ]
 
 [package.metadata.requires-dev]

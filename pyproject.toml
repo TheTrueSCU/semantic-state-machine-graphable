@@ -1,23 +1,35 @@
 [project]
-name = "state-machine-graphable"
-version = "0.1.0"
-description = "Add your description here"
+name = "semantic-state-machine-graphable"
+version = "0.1.4"
+description = "A library for visualizing semantic-state-machine structures and AuditContext execution paths as graphs using graphable."
 readme = "README.md"
 authors = [
     { name = "Richard West", email = "dopplereffect.us@gmail.com" }
 ]
+license = "MIT"
+license-files = ["LICENSE"]
+keywords = ["state-machine", "graphable", "visualization", "audit", "type-safety"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering :: Visualization",
+]
 requires-python = ">=3.13"
 dependencies = [
     "graphable>=0.6.1",
-    "state-machine",
+    "semantic-state-machine>=0.1.0",
 ]
 
-[build-system]
-requires = ["uv_build>=0.9.26,<0.10.0"]
-build-backend = "uv_build"
+[project.urls]
+Homepage = "https://github.com/TheTrueSCU/semantic-state-machine-graphable"
+Repository = "https://github.com/TheTrueSCU/semantic-state-machine-graphable"
+Issues = "https://github.com/TheTrueSCU/semantic-state-machine-graphable/issues"
 
-[tool.uv.sources]
-state-machine = { git = "https://github.com/TheTrueSCU/state-machine.git" }
+[build-system]
+requires = ["uv-build>=0.11.0"]
+build-backend = "uv_build"
 
 [dependency-groups]
 dev = [

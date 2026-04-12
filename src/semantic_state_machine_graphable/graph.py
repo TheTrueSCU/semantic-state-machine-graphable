@@ -1,6 +1,6 @@
 from enum import Enum
 from typing import TypeVar
-from state_machine import StateMachine, AuditContext
+from semantic_state_machine import StateMachine, AuditContext
 from graphable import Graph, Graphable
 
 S = TypeVar("S", bound=Enum)

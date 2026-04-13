@@ -19,7 +19,7 @@ classifiers = [
 requires-python = ">=3.13"
 dependencies = [
     "graphable>=0.6.1",
-    "semantic-state-machine==0.2.0",
+    "semantic-state-machine==0.3.0",
 ]
 
 [project.urls]

@@ -1094,11 +1094,11 @@ wheels = [
 
 [[package]]
 name = "semantic-state-machine"
-version = "0.2.0"
+version = "0.3.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/9c/e3/d144789d8addb722877b644fe9b1eba4ae9430e91f2db8f81e7b194bdc68/semantic_state_machine-0.2.0.tar.gz", hash = "sha256:d5a942287295bac3a507909b382fbb199c941c7147b4b76229c66708db0b1838", size = 4293, upload-time = "2026-04-13T04:22:28.692Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/3b/7c/196ce4d83782f09027101999e67bd35aea0d58d804ef4149dbb31eef024e/semantic_state_machine-0.3.0.tar.gz", hash = "sha256:76b22652e5829bc63b4daaa3e336bab43a1c095d74eb1adf7fd7cdcf74de5963", size = 4720, upload-time = "2026-04-13T23:47:14.989Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/24/46/16d9ca3b06ab3bb9a7f98a055c3686ccd8f0100bd94e726fb7f088bada2e/semantic_state_machine-0.2.0-py3-none-any.whl", hash = "sha256:03258396b161438a9a86bae6a5c10c14dafffb562c8c068cf6fca4edabca7fa6", size = 5378, upload-time = "2026-04-13T04:22:27.105Z" },
+    { url = "https://files.pythonhosted.org/packages/02/16/38f2f98cbbe577fe93339194ba2c43f8b4f8e618e419bdbe22a443999c15/semantic_state_machine-0.3.0-py3-none-any.whl", hash = "sha256:90317c2df72c48b0e94d7939c0db7a64ac6e5177a28ca2d378ac95115e51afdf", size = 5685, upload-time = "2026-04-13T23:47:13.604Z" },
 ]
 
 [[package]]
@@ -1130,7 +1130,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "graphable", specifier = ">=0.6.1" },
-    { name = "semantic-state-machine", specifier = "==0.2.0" },
+    { name = "semantic-state-machine", specifier = "==0.3.0" },
 ]
 
 [package.metadata.requires-dev]

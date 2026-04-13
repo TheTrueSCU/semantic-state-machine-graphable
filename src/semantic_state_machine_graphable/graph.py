@@ -12,10 +12,10 @@ class StateNode[S: Enum](Graphable[S]):
     """A node in the graph representing a state.
 
     Args:
-        state: The Enum value representing the state.
+        state (S): The Enum value representing the state.
     """
 
-    def __init__(self, state: S):
+    def __init__(self, state: S) -> None:
         super().__init__(state)
 
 
@@ -23,20 +23,26 @@ class StateMachineGraph[S: Enum, E: Enum, C](Graph[StateNode[S]]):
     """A graph representation of a StateMachine's structure.
 
     Args:
-        sm: The StateMachine instance to visualize.
+        sm (StateMachine[S, E, C]): The StateMachine instance to visualize.
 
-    Notes:
-        Architectural Intent: Provides a static view of all possible
-        transitions defined in the state machine.
+    Notes/Architectural Intent:
+        Provides a static view of all possible transitions defined in the state machine.
     """
 
-    def __init__(self, sm: StateMachine[S, E, C]):
+    def __init__(self, sm: StateMachine[S, E, C]) -> None:
         super().__init__()
-        self._sm = sm
+        self._sm: StateMachine[S, E, C] = sm
         self._sync()
 
     def _get_or_create_node(self, state: S) -> StateNode[S]:
-        """Retrieves an existing node for a state or creates a new one."""
+        """Retrieves an existing node for a state or creates a new one.
+
+        Args:
+            state (S): The state to retrieve or create a node for.
+
+        Returns:
+            StateNode[S]: The node corresponding to the state.
+        """
         try:
             return self[state]
         except KeyError:
@@ -44,9 +50,9 @@ class StateMachineGraph[S: Enum, E: Enum, C](Graph[StateNode[S]]):
             self.add_node(node)
             return node
 
-    def _sync(self):
+    def _sync(self) -> None:
         """Builds the Graph from the StateMachine's transitions."""
-        for (from_state, event), (to_state, _) in self._sm._transitions.items():
+        for (from_state, event), (to_state, _) in self._sm.transitions:
             u = self._get_or_create_node(from_state)
             v = self._get_or_create_node(to_state)
 
@@ -65,28 +71,34 @@ class AuditContextGraph[S: Enum, E: Enum, C](Graph[StateNode[S]]):
     """A graph representation of the execution path recorded in an AuditContext.
 
     Args:
-        ctx: The AuditContext instance to visualize.
-        sm: Optional StateMachine instance to resolve target states.
-            If not provided, target states are inferred from the next entry
-            in the audit log, meaning the final transition's target state
-            cannot be determined.
+        ctx (AuditContext[S, E]): The AuditContext instance to visualize.
+        sm (StateMachine[S, E, C] | None): Optional StateMachine instance to resolve
+            target states. If not provided, target states are inferred from the next
+            entry in the audit log, meaning the final transition's target state cannot
+            be determined.
 
-    Notes:
-        Architectural Intent: Visualizes the actual sequence of states
-        visited. Edges are annotated with the sequence of 1-based indices
-        from the audit log.
+    Notes/Architectural Intent:
+        Visualizes the actual sequence of states visited. Edges are annotated with the
+        sequence of 1-based indices from the audit log.
     """
 
     def __init__(
         self, ctx: AuditContext[S, E], sm: StateMachine[S, E, C] | None = None
-    ):
+    ) -> None:
         super().__init__()
-        self._ctx = ctx
-        self._sm = sm
+        self._ctx: AuditContext[S, E] = ctx
+        self._sm: StateMachine[S, E, C] | None = sm
         self._sync()
 
     def _get_or_create_node(self, state: S) -> StateNode[S]:
-        """Retrieves an existing node for a state or creates a new one."""
+        """Retrieves an existing node for a state or creates a new one.
+
+        Args:
+            state (S): The state to retrieve or create a node for.
+
+        Returns:
+            StateNode[S]: The node corresponding to the state.
+        """
         try:
             return self[state]
         except KeyError:
@@ -94,24 +106,23 @@ class AuditContextGraph[S: Enum, E: Enum, C](Graph[StateNode[S]]):
             self.add_node(node)
             return node
 
-    def _sync(self):
+    def _sync(self) -> None:
         """Builds the Graph from the AuditContext's history."""
-        audit_data = self._ctx._audit
-        for i in range(len(audit_data)):
-            from_state, event = audit_data[i]
-
-            to_state = None
+        audit_trail = self._ctx.audit_trail()
+        for i, (from_state, event) in enumerate(audit_trail):
+            to_state: S | None = None
             if self._sm:
                 # Use StateMachine to find to_state
                 try:
+                    # Accessing private attribute is intentional based on StateMachine API
                     to_state, _ = self._sm._next_transition(from_state, event)
                 except Exception:
                     # If SM doesn't have it, try fallback to inference
                     pass
 
-            if to_state is None and i + 1 < len(audit_data):
+            if to_state is None and i + 1 < len(audit_trail):
                 # Fallback to inference from next state
-                to_state = audit_data[i + 1][0]
+                to_state = audit_trail[i + 1][0]
 
             if to_state is None:
                 continue

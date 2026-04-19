@@ -1,7 +1,8 @@
 from enum import Enum
 from typing import TypeVar
 from semantic_state_machine import StateMachine, AuditContext
-from graphable import Graph, Graphable
+from graphable.cyclic_graph import CyclicGraph
+from graphable import Graphable
 
 S = TypeVar("S", bound=Enum)
 E = TypeVar("E", bound=Enum)
@@ -19,7 +20,7 @@ class StateNode[S: Enum](Graphable[S]):
         super().__init__(state)
 
 
-class StateMachineGraph[S: Enum, E: Enum, C](Graph[StateNode[S]]):
+class StateMachineGraph[S: Enum, E: Enum, C](CyclicGraph[StateNode[S]]):
     """A graph representation of a StateMachine's structure.
 
     Args:
@@ -64,10 +65,10 @@ class StateMachineGraph[S: Enum, E: Enum, C](Graph[StateNode[S]]):
                 u.set_edge_attribute(v, "events", events)
                 u.set_edge_attribute(v, "label", ", ".join(e.name for e in events))
             else:
-                u.add_dependent(v, events=[event], label=event.name)
+                self.add_edge(u, v, events=[event], label=event.name)
 
 
-class AuditContextGraph[S: Enum, E: Enum, C](Graph[StateNode[S]]):
+class AuditContextGraph[S: Enum, E: Enum, C](CyclicGraph[StateNode[S]]):
     """A graph representation of the execution path recorded in an AuditContext.
 
     Args:

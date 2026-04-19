@@ -1,6 +1,6 @@
 [project]
 name = "semantic-state-machine-graphable"
-version = "0.2.0"
+version = "0.3.0"
 description = "A library for visualizing semantic-state-machine structures and AuditContext execution paths as graphs using graphable."
 readme = "README.md"
 authors = [
@@ -18,7 +18,7 @@ classifiers = [
 ]
 requires-python = ">=3.13"
 dependencies = [
-    "graphable>=0.6.1",
+    "graphable==0.7.0",
     "semantic-state-machine==0.3.0",
 ]
 

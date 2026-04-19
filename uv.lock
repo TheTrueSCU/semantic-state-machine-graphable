@@ -375,14 +375,14 @@ wheels = [
 
 [[package]]
 name = "graphable"
-version = "0.6.1"
+version = "0.7.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "defusedxml" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/c8/a9/c7bca037c7d06495661e9d637631112ee34ccd44fcacb4ec83549daaed32/graphable-0.6.1.tar.gz", hash = "sha256:623346c15593f73e5a4c099735631fd9100e38a22fbe79bdee493df067dece80", size = 42554, upload-time = "2026-03-05T00:19:20.935Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/3b/70/92a12cee5546c02c4530182d863febd6d7d005ef45e532e02fa2bbb2851b/graphable-0.7.0.tar.gz", hash = "sha256:6cf5ae8816520ea9cdc1915be2b055442f8c7c2394b66bf0a1c7583149e5a760", size = 42921, upload-time = "2026-04-19T18:52:23.042Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/6c/f7/21b29964183aaf5ca06281475caf92d5ebe9247916b4523360048132c87e/graphable-0.6.1-py3-none-any.whl", hash = "sha256:3bb3ddb58e9ad845092b8ced751bcd1b6efed4cb61491c7c8f98ee857e24bac6", size = 62711, upload-time = "2026-03-05T00:19:19.567Z" },
+    { url = "https://files.pythonhosted.org/packages/78/ea/9e1205d07627c91d7e4eb1ffd033abad82073292f9830cb16912d9b13c0c/graphable-0.7.0-py3-none-any.whl", hash = "sha256:fa552b4afd7f0d5c3b82ae62b8928ddba23a332d97912f51714239976ba896a2", size = 63982, upload-time = "2026-04-19T18:52:21.409Z" },
 ]
 
 [[package]]
@@ -1103,7 +1103,7 @@ wheels = [
 
 [[package]]
 name = "semantic-state-machine-graphable"
-version = "0.2.0"
+version = "0.3.0"
 source = { editable = "." }
 dependencies = [
     { name = "graphable" },
@@ -1129,7 +1129,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "graphable", specifier = ">=0.6.1" },
+    { name = "graphable", specifier = "==0.7.0" },
     { name = "semantic-state-machine", specifier = "==0.3.0" },
 ]
 

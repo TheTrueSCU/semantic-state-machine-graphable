@@ -109,3 +109,15 @@ def test_audit_context_graph_sm_exception_path():
     graph = AuditContextGraph(ctx, sm)
     assert len(graph) == 2
     assert graph[State.B] in graph[State.A].dependents
+
+
+def test_state_machine_graph_with_cycle():
+    sm = StateMachine[State, Event, None]()
+    sm.add_transition(State.A, Event.E1, State.B, lambda ctx: None)
+    sm.add_transition(State.B, Event.E1, State.A, lambda ctx: None)
+
+    # Should not raise GraphCycleError now that we use CyclicGraph
+    graph = StateMachineGraph(sm)
+    assert len(graph) == 2
+    assert State.A in graph
+    assert State.B in graph
